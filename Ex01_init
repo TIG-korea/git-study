@@ -14,5 +14,5 @@
 
 4. 깃허브에 코드 올릴때 커맨드
     - git add .
-    - git commit - m "기록용 말 아무거나"
+    - git commit -m "기록용 말 아무거나"
     - git push origin master

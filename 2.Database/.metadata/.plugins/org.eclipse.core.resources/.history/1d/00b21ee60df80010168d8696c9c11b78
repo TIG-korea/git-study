@@ -1,0 +1,26 @@
+SELECT * FROM employees	
+ORDER BY birth_date DESC;
+
+SELECT * FROM titles 
+ORDER BY to_date DESC;
+
+SELECT max(salary) FROM salaries s ;
+SELECT min(salary) FROM salaries s ;
+SELECT avg(salary) FROM salaries s ;
+SELECT sum(salary) FROM salaries s ;
+SELECT count(*) FROM salaries s ;
+
+
+SELECT count(*) AS '직원 수 ' FROM employees ;
+
+SELECT count(*) AS '직원 수 ' FROM titles 
+WHERE title = 'Engineer';
+
+SELECT count(*) AS '직원 수 ' FROM employees 
+WHERE hire_date > '1965-01-01';
+
+SELECT max(emp_no) AS '가장 높은 직원 ' FROM employees ;
+SELECT min(emp_no) AS '가장 낮은 직원 ' FROM employees ;
+
+
+

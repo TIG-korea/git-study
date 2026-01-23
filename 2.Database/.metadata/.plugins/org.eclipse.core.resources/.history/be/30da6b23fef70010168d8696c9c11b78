@@ -185,22 +185,13 @@ WHERE dept_no IN ('d005','doo9');
 				SELECT * FROM employees
 				WHERE last_name  LIKE '%son%';
 -- Q27. titles 테이블에서 to_date가 NULL인 데이터를 조회하세요.
--- 	
-				SELECT * FROM titles
-				WHERE to_date IS NULL;
+-- 
 -- Q28. dept_emp 테이블에서 부서가 d001, d003, d005인 사원을 조회하세요.
--- 	
-			SELECT * FROM dept_emp
-			WHERE dept_no IN ('d001', 'd003', 'd005');
-
+-- 
 -- Q29. employees 테이블에서 사번이 10001, 10005, 10010인 사원을 조회하세요.
 -- 
-			SELECT * FROM employees
-		WHERE emp_no IN (10001, 10005, 10010);
 -- Q30. departments 테이블에서 부서명이 Sales 또는 Development인 부서를 조회하세요.
-				SELECT * FROM departments
-			WHERE dept_name IN ('Sales', 'Development');
-	
+
 
 
 

@@ -1,167 +1,132 @@
-SELECT * FROM employees	
-ORDER BY birth_date DESC;
-
-SELECT * FROM titles 
-ORDER BY to_date DESC;
-
-SELECT max(salary) FROM salaries s ;
-SELECT min(salary) FROM salaries s ;
-SELECT avg(salary) FROM salaries s ;
-SELECT sum(salary) FROM salaries s ;
-SELECT count(*) FROM salaries s ;
-
-
-SELECT count(*) AS '직원 수 ' FROM employees ;
-
-SELECT count(*) AS '직원 수 ' FROM titles 
-WHERE title = 'Engineer';
-
-SELECT count(*) AS '직원 수 ' FROM employees 
-WHERE hire_date > '1965-01-01';
-
-SELECT max(emp_no) AS '가장 높은 직원 ' FROM employees ;
-SELECT min(emp_no) AS '가장 낮은 직원 ' FROM employees ;
-
-
-
-SELECT max(emp_no), first_name, birth_date FROM employees 
-GROUP BY first_name ,birth_date;
-
-
--- 부서별 직원 수 구하기
---  부서 번호(dept_no ) 조회 
-SELECT count(*), dept_no FROM dept_emp 
-GROUP BY dept_no;
-
-SELECT count(*) AS 'cnt', gender FROM employees 
-GROUP BY gender;
-
-
-SELECT count(*) AS '직원 수', title FROM titles 
-GROUP BY title 
-ORDER BY title DESC;
-
-
-SELECT count(*) AS '직원 수', title FROM titles 
-GROUP BY title 
-HAVING count(*)  >= 100000
-ORDER BY title DESC;
-
-
--- dept_emp 에서 직원 수가 5만 이상인 부서만 조회 
-
-SELECT count(*), dept_no FROM dept_emp
-GROUP BY dept_no 
-HAVING count(*)  >= 50000;
-
---  현재 재직중인 직원들 중 직무별 직원수가 200명 미만인 직무만 조회
-SELECT title, count(*) FROM titles 
-WHERE TO_date = '9999-01-01'
-GROUP BY title 
-HAVING count(*) < 200;
-
-
-SELECT * FROM employees;
-
--- Q1. employees 테이블에서 사원을 사번 기준으로 오름차순 정렬하여 조회하세요.
-		SELECT emp_no FROM employees 
-		ORDER BY emp_no ;
--- 
--- Q2. employees 테이블에서 사원을 사번 기준으로 내림차순 정렬하여 조회하세요.
-		SELECT emp_no  FROM employees
-	
-		ORDER BY emp_no desc ;
--- 
--- Q3. salaries 테이블에서 급여를 높은 순으로 정렬하여 조회하세요.
-		SELECT salary  , count(*) FROM salaries
-		GROUP BY salary 
-		ORDER BY salary ;
--- 
--- Q4. employees 테이블에서 입사일 기준으로 오래된 순서대로 정렬하여 조회하세요.
-		SELECT hire_date  , count(*) FROM employees
-		GROUP BY hire_date 
-		ORDER BY hire_date ;
--- 
--- Q5. employees 테이블에서 성별 기준으로 정렬한 뒤 사번 기준으로 정렬하여 조회하세요.
-		SELECT emp_no  , count(*) FROM employees
-		GROUP BY emp_no 
-		ORDER BY gender , emp_no asc ;
--- 
--- Q6. salaries 테이블에서 가장 높은 급여를 조회하세요.
-		SELECT max(salary) FROM salaries;
+1. 연산자 종류 
+	- () : 우선 순위 높이기 위해서 사용 
+	- 산술 연산자 (*,/,+,) : 사칙 연산
+	- 비교 연산자 (=, !=, ,<>, >, >=) 
+	- IS NULL, LIKE, IN
+		> IS NULL : 빈 값인지 확인
+		> LIKE : 문자열 패턴 검색 (%는 0글자 이상, _는 무조건 1글자)
+		> IN : 여러 값을 비교할 때 사용 (ex. 컬럼명 IN('M','W'))
+		- BETWEEN  이상값 AND 이하값 (범위검색)	
+		- NOT : 논리 부정 (참을 거짓으로, 거짓을 참으로)
+		- AND : 두 피연산자의 조건이 모두 같다면 참
+		- OR : 두 피연산자 중 하나라도 같다면 참 
 		
--- 
--- Q7. salaries 테이블에서 가장 낮은 급여를 조회하세요.
-	SELECT min(salary) FROM salaries;
-
--- 
--- Q8. salaries 테이블에서 평균 급여를 조회하세요.
-	SELECT avg(salary) FROM salaries;
-
--- 
--- Q9. salaries 테이블에서 전체 급여 합계를 조회하세요.
-		SELECT sum(salary) FROM salaries;
-
--- 
--- Q10. employees 테이블에서 전체 사원 수를 조회하세요.
-		SELECT count(*) FROM employees;
-
--- 
--- Q11. employees 테이블에서 성별별 사원 수를 조회하세요.
-	SELECT count(*) FROM employees
-	GROUP BY gender ;
-
--- 
--- Q12. dept_emp 테이블에서 부서별 사원 수를 조회하세요.
-		SELECT count(*) FROM dept_emp
-	GROUP BY dept_no  ;
--- 
--- Q13. titles 테이블에서 직급별 사원 수를 조회하세요.
-	SELECT count(*) FROM titles
-	GROUP BY  title ;
--- 
--- Q14. salaries 테이블에서 사번별 평균 급여를 조회하세요.
-	SELECT emp_no , avg(salary ) FROM salaries
-	GROUP BY  emp_no  ;
--- 
--- Q15. employees 테이블에서 입사 연도별 사원 수를 조회하세요.
-	SELECT count(*) FROM employees
-	GROUP BY  hire_date   ;
--- 
--- Q16. 성별별 사원 수 중 100000명 이상인 경우만 조회하세요.
-	SELECT gender, count(*) FROM employees
-	GROUP BY gender 
-	HAVING COUNT(*) >= 100000 ;
+2. 정렬
+	- ORDER BY 컬럼명 옵션
+		> 옵션1 : ASC(기본값) 오름차순
+		> 옵션2 : DESC 내림차순
+		
+3. 그룹 함수
+	- 여러 개의 행을 묶어 연산하여 결과를 반환
+	- 아래에서 작성할 그룹함수 외에도 다양한 그룸함수를 지원
 	
--- Q17. 부서별 사원 수 중 20000명 이상인 부서만 조회하세요.
-	SELECT count(*) FROM titles 
-	GROUP BY title 
-	HAVING COUNT(*) >= 20000 ; 
--- 
--- Q18. 직급별 사원 수 중 50000명 이상인 직급만 조회하세요.
-	SELECT title,count(*) FROM titles 
-	GROUP BY title 
-	HAVING COUNT(*) >= 50000 ;
--- 
--- Q19. 사번별 평균 급여가 80000 이상인 사원만 조회하세요.
-	SELECT emp_no ,count(*) FROM salaries 
-	GROUP BY emp_no  
-	HAVING COUNT(*) >= 80000 ;
--- 
--- Q20. 입사 연도별 사원 수 중 10000명 이상인 연도만 조회하세요.
--- 
-	SELECT YEAR(hire_date) ,count(*) '연도별' FROM employees 
-	GROUP BY YEAR(hire_date)  
+4. 그룹 함수 종류 (집계함수)
+	- max(컬럼명) : 최댓값
+	- min(컬럼명) : 최솟값
+	- avg(컬럼명) : 평균
+	- sum(컬럼명) : 합계
+	- count(컬럼명) : 반환된 행의 갯수 
+
+5. GROUP BY 
+	- 조회된 데이터의 여러개 행을 특정 컬럼의 값을 기준으로 묶어 그룹화
+	- 일반적으로 그룸함수와 함께 사용 
 	
-	HAVING COUNT(*) >= 10000 ;
+6. HAVING 
+	- 그룹 함수를  이용한 조건을 작성할 때 사용
+	- ex) count(*) >= 100
+	- 주의 : 문법상 GROUP BY 뒤에 위치해야 함
 
+7. SELECT 실행 순서
+	- 맨 처음 FROM으로 테이블을 가져옴 
+	- 이후 아래로 쭉 실행 (모두 실행되거나, ORDER BY 만나기 전 까지 )
+	- 이후 SELECT로 필요한 컬럼만 조회 
+	- ORDER BY가 있다면 마지막응로 실행
+	- ex) FROM > WHERE > GROUP BY > HAVING > SELECT > ORDER BY 
+	
+8. JOIN 
+	- 두 개 이상의 테이블의 데이터를 모두 조회할 때 사용
+	- 종류 : INNER JOIN, LEFT JOIN, RIGHT JOIN, ...
+	
+9. INNER JOIN
+	- ON 절에서 두 테이블의 공통된 값이 있을 경우에만 조회 
+	
+10. LEFT JOIN 
+	- ON 절에서 두 테이블의 공통된 값이 없어도 기준 테이블(FROM 테이블을)은 무조건 조회
+	- 합쳐진 테이블의 값이 없어도 NULL로 채워져서 조회됨
+	
+11. RIGHT JOIN  
+	-ON절에서 두 테이블의 공통된 값이 없어도 조인된 테이블 (JOIN 테이블)은 무조건 조회
+	- 기준 테이블은 값이 없어도 NULL로 채워져서 조회딤	
 
+	
+12. 서브쿼리 
+	- SQL 쿼리 안에 포함된 또 다른 쿼리
+	- 쿼리안에 쿼리가 있는 구조 	
+	
+13. 조건 서브 쿼리 
+	- WHERE절에 사용하는 서브쿼리 
+	- 단일행 서브쿼리 : 서브쿼리의 실행 결과가 데이터가 1개인 서브쿼리
+	- 다중행 서브쿼리 : 서브쿼리의 실행 결과가 컬림이 2개 이상인 서브쿼리
+	- 다중열 다중행 서브쿼리 : 서브쿼리의 실행 결과가 데이터가 2개 이상, 컬럼이 2개 이상인 서브쿼리 
+	
+14. 단일행 서브쿼리 
+	- 결과 갑의 데이터(행)가 1개인 서브쿼리
+	- 단일행 비교 연산자 사용
+		> 단일행 비교 연산자 : =, <=, <, >=, >, != 
+	- 예시) SELECT first_name, last_name FROM employees
+			WHERE emp_no = (SELECT max(emp)_no FROM employees)
+			
+15. 다중행 서브쿼리
+	- 결과 값의 데이터(행)가 2개 이상인 서브쿼리
+	- 다중행 비교 연산자 사용
+		> 다중행 비교 연산자 : IN, ALL, ANY, ...
+	- 예시) SELECT emp_no, salary FROM salaries
+			WHERE salary IN (SELECT salary FROM salaries)
+	
 
+16. 다중행 서브쿼리 
+	- 결과 값의 데이터와 컬럼의 개수가 2개 이상인 서브쿼리
+	- 예시) SELECT emp_no, title, to_date FROM titles
+			WHERE (emp_no, to_date) IN (SELECT emp_no, max(to_date) FROM titles 				
+										GROUP BY emp_no)
+										
+17. 인라인 뷰
+	- FROM절에 서브쿼리를 사용하는 방식
+	- 서브쿼리 수행 결과가 테이블처럼 사용됨
+	- 예시) SELECT * FROM (SELECT dept_no, COUNT(*) AS cnt FROM dept_emp
+							GROUP BY dept_no) d;
 
+	- 주의1) 반드시 인라인 뷰 작성 후 테이블 별칭을 지어줘야 함 
+	- 주의2) 그룸 함수 사용 시 별칭을 지어줘야 메인쿼리에서 사용 가능
+	- 참고) 조건은 되도록 메인 쿼리에서 작성 해주는 것이 성능상 좋음 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,33 @@
+CREATE TABLE position(
+		id int,
+		position_name varchar(250)
+);
+
+
+SELECT * FROM employees;
+
+
+
+
+INSERT INTO employees
+VALUES('짱구',5,'M','개발팀',9800,5);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

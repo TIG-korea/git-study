@@ -64,8 +64,8 @@ public class Ex02_Operator {
 		//	- 논리(true/false)를 부정하는 연산자
 		
 		String str3 = "가나다라";
-		System.out.println("".equals(str3)); // str3이 비워져 있으면 true
-		System.out.println(!"".equals(str3));// str3이 비워져 있으면 true
+		System.out.println("xxxxx".equals(str3)); // str3이 비워져있으면 true
+		System.out.println(!"xxxxx".equals(str3));// str3이 비워져있지 않으면 true
 		
 		
 		System.out.println("--------------논리 연산자-------------");
@@ -93,7 +93,7 @@ public class Ex02_Operator {
 		
 		int a = 10;
 		int b = 20;
-		
+		System.out.print(a > b );
 
 		
 		 

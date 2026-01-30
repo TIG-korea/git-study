@@ -5,63 +5,63 @@ public class Ex13_Method {
 	public static void main(String[] args) {
 
 		// 메서드
-		// - 정의된 동작이나 기능을 수행 
-		
+		// - 정의된 동작이나 기능을 수행
+
+		Ex13_Method m = new Ex13_Method();
 		// 객체 생성 ( = 인스턴스화)
-		//	- 코드를 메모리에 올리는 과정 
-		//	- 클래스명 변수명 = new 클래스명();
+		// - 코드를 메모리에 올리는 과정
+		// - 클래스명 변수명 = new 클래스명();
 
 		Ex13_1_Calc calc = new Ex13_1_Calc();
-		
+
 		calc.add(10, 10); // 10 + 10
-		calc.add(20, 10);  // <<  애네들을 "인자"라고 부름 
-		
-		
-		
+		calc.add(20, 10); // << 애네들을 "인자"라고 부름
+
 		int result1 = calc.add(5, 3); // 5 + 3
 		System.out.println(result1);
-		
-		// q2 문제
-		int q2 = calc.sub(2, 3, 4);
-		System.out.println(q2);
-		
-		// q3 문제 
-	   int q3 = calc.mul(5, 6 ,7 ,8);
-	   System.out.println(q3);
-		
-		
-		
-		
-		Ex13_Method m = new Ex13_Method();
+
+//		// q2 문제
+//		int q2 = calc.sub(2, 3, 4);
+//		System.out.println(q2);
+//		
+		// q3 문제
+		int q3 = calc.mul(5, 6, 7, 8);
+		System.out.println(q3);
+
 		String result = m.printHello("안녕하세요 저는 홍길동입니다.");
 		System.out.println(result);
+
+		int[] numbers = { 100, 200, 300, 400 };
+
+		int sum = calc.sub(numbers);
+		System.out.println(sum);
+
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		Ex13_3_BankAccount BankAccount = new Ex13_3_BankAccount();
+		BankAccount.deposit(500);
+		BankAccount.withdraw(500);
+		BankAccount.checkBalance();
+
+		String check = "현재 잔액을 확인합니다."; // == BankAccount.checkBalance();
+		System.out.println(check);
+
+	}
+
+	// 안녕하세요 출력하는 메서드
+	// public 반환타입 메서드명(자료형 매개변수명) { }
+	// - 반환 타입의 종류 : void, int , String< int[] , ArrayList<>, . . .
+	// - void : 반환 타입 없음 (return 없음)
+	public String printHello(String str) {
+		System.out.println(str);
+		return " 잘 출력되었습니다.";
+		
+		
+		
+		
 		
 		
 		
 		
 	}
-	
-	
-	
-	
-	
-	// 안녕하세요 출력하는 메서드
-	// public 반환타입 메서드명(자료형 매개변수명) {   }
-	// - 반환 타입의 종류 : void, int , String< int[] , ArrayList<>, . . .  
-	// - void : 반환 타입 없음 (return 없음)
-	public String printHello(String str) {
-		System.out.println(str);
-		return " 잘 출력되었습니다.";
-	} 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

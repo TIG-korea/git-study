@@ -27,7 +27,7 @@ public class ReqsignupDTO {
 	private String email;
 	private String userId;
 	private String password;
-	
+	private String passwordCheck;
 	private String phoneNumber;
 	
 

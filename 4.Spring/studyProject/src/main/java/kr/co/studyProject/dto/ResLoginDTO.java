@@ -3,6 +3,7 @@ package kr.co.studyProject.dto;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor	// 기본 생성자
 @AllArgsConstructor	// 모든 필드가 다 있는 생성자
 @ToString
-
+@Builder
 public class ResLoginDTO {
 	
 	private Long id;

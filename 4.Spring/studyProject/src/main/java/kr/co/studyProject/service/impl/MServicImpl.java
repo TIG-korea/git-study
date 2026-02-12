@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+
 public class MServicImpl implements MServic{
 
 	private final MemberRepository memberRepository;
@@ -55,9 +56,20 @@ public class MServicImpl implements MServic{
 	@Override
 	public ResLoginDTO login(ReqLoginDTO request) {
 		
-		Member member = memberRepository.findByUserId(request.getUserId());
+		Member member = memberRepository.findByEmail(request.getEmail());
 		
-		return null;
+		if(member == null) {
+			return null;
+		}
+		if(!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
+			return null;
+		}
+		
+		ResLoginDTO response = ResLoginDTO.builder()
+								.email(member.getEmail())
+//								.password(member.getPassword())
+								.build();
+		return response;
 	}
 	
 	

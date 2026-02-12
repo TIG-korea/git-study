@@ -3,13 +3,17 @@ package kr.co.studyProject.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
+import kr.co.studyProject.dto.ReqLoginDTO;
 import kr.co.studyProject.dto.ReqsignupDTO;
+import kr.co.studyProject.dto.ResLoginDTO;
 import kr.co.studyProject.service.MServic;
 import lombok.RequiredArgsConstructor;
 
 @Controller // 컨트롤러임을 선언하는 어노테이션
-	// URL 매핑(GET+POST)
+@RequestMapping("/")	// URL 매핑(GET+POST)
 @RequiredArgsConstructor  // final 키워드가 붙은 필드에 대한 생성자를 만듬 (생성자 주입 방식)
 public class MController {
 	private final MServic signupService;
@@ -35,7 +39,18 @@ public class MController {
 		return "login";
 	}
 	
-	
+	@PostMapping("/login")
+	public String post(ReqLoginDTO request,
+						HttpSession session) {
+		ResLoginDTO response = signupService.login(request);
+		
+		if (response == null) {
+			return "redirect:/signup";
+		}
+		System.out.println("로그인 성공");
+		session.setAttribute("LOGIN_USER", response);
+		return "redirect:/";
+	}
 	
 	
 	

@@ -1,0 +1,33 @@
+.selcet {
+
+    color: blue;
+    cursor: wait;
+}
+
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+
+}
+
+#head {         
+    background-color: cornflowerblue;
+
+}
+
+#body{
+    text-align: center;
+    background-color : aliceblue;
+
+
+}
+
+.red{
+    color: red;
+}
+
+.blue{
+    color: blue;
+}

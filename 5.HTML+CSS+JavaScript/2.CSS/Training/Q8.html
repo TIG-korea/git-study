@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .header{
+            background-color: #111;
+            color: white;
+            height:  50px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            gap:15px
+            
+        }
+
+        .left{
+            margin: 20px;
+        }
+        
+        .light {
+        justify-content: flex-end;
+        margin: 20px;
+        
+        }
+
+        span {
+            margin: 15px;
+        }
+        
+        .container{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        
+        .box{
+            display: flex;
+            justify-content: center;
+            border: 1px solid #f4f4f4;
+            border-radius: 10px;
+            background-color: #f4f4f4;
+            padding: 50px;
+            width: 400px;
+            height: 20px
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+            <span>MyCompany</span>
+        </div>
+        <div class="light">
+            <span>Home</span>
+            <span>About</span>
+            <span>Services</span>
+            <span>Contact</span>
+        </div>
+    </div>
+
+    <div class="container">
+        
+            <p class="box">Service 1</p>
+            <p class="box">Service 2</p>
+            <p class="box">Service 3</p>
+            <p class="box">Service 4</p>
+            <p class="box">Service 5</p>
+            <p class="box">Service 6</p>
+        
+    </div>
+    
+</body>
+</html>

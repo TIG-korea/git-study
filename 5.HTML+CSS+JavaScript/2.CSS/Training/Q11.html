@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            background-color: #87CEEB;
+        }
+
+        .container{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height: 1000px;
+            gap:10px
+        }
+
+        .box{
+            background-color: #4682B4;
+            width: 20px;
+            height: 20px;
+            border-radius: 100px;
+            animation-name : ddd;
+            animation-duration: 5s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+            
+        }
+
+
+
+
+
+        @keyframes ddd {
+            0%{
+                transform: scale(1);
+                opacity: 0;
+                
+            }
+
+            50%{
+                transform: scale(2);
+                opacity: 1;
+                margin: 20px;
+            }
+
+            100%{
+                transform: scale(1);
+                opacity: 0;
+                margin: -10px
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+</body>
+</html>

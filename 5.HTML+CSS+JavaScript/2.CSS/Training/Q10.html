@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        *{
+            background-color: blue;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content:center;
+            align-items: flex-end;
+        }
+        div {
+            color: white;
+            background-color: white;
+            border: 1px solid white;
+            border-radius: 100px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .box{
+            animation-name : up;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes up {
+            0%{
+                transform: translateY(0px);
+                
+            }
+
+            50%{
+                transform: translateY(-500px);
+            }
+
+            100%{
+                transform: translateY(0px);
+            }
+            
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="box"></div>    
+    
+</body>
+</html>

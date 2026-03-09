@@ -1,0 +1,11 @@
+
+
+export default function Child1({count, setCount}) {
+    return(
+        <>
+            <p>Child 값 : {count}</p>
+            <button onClick={() => setCount(count => count+1)}>증가</button>
+        </>
+    )
+
+}

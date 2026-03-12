@@ -27,6 +27,15 @@ export const loginMemberApi = async (loginData) => {
     return response.data;
 }
 
+export const logoutMemberApi = async () => {
+    const response = await axiosInstance.get ('/api/member/logout', {
+        withCredentials: true
+    })
+
+    return response.data;
+}
+
+
 // 현재 로그인 상태 확인  (jwt사용해보면 좋음)
     export const checkMemberApi = async() => {
         const response = await axiosInstance.get('/api/member/check',{

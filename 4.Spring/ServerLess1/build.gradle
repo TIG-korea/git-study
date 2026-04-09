@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'kr.co'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // ← JDK 21 필요
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // AWS Lambda
+    implementation 'com.amazonaws.serverless:aws-serverless-java-container-springboot3:2.0.1'
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.3'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.3'
+}
+
+/*
+ * Spring Boot 기본 fat jar 비활성화
+ * Lambda용 jar만 사용
+ */
+tasks.named('bootJar') {
+    enabled = false
+}
+
+tasks.named('jar') {
+    enabled = true
+}
+
+/*
+ * ShadowJar 설정 (Lambda용 fat jar 생성)
+ */
+import com.github.jengelman.gradle.plugins.shadow.transformers.PropertiesFileTransformer
+import com.github.jengelman.gradle.plugins.shadow.transformers.AppendingTransformer
+
+tasks.withType(com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
+    archiveBaseName.set('lambda')
+    archiveClassifier.set('')
+    archiveVersion.set('')
+
+    mergeServiceFiles()
+
+    // Spring Boot 자동 설정 병합 (핵심)
+    transform(PropertiesFileTransformer) {
+        paths = ['META-INF/spring.factories']
+        mergeStrategy = "append"
+    }
+
+    transform(AppendingTransformer) {
+        resource = 'META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports'
+    }
+
+    transform(AppendingTransformer) {
+        resource = 'META-INF/spring.handlers'
+    }
+
+    transform(AppendingTransformer) {
+        resource = 'META-INF/spring.schemas'
+    }
+}
